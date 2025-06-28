@@ -1,16 +1,95 @@
 //////////////////////////////////////////////////////////////////////
 // For the non-mutable matrix's 
 //////////////////////////////////////////////////////////////////////
-
-trait Matrix {
-    fn matrix_min(self) -> i32;
-    fn matrix_max(self) -> i32;
-    fn matrix_median(self) -> i32;
-    fn matrix_print(self);
-    fn matrix_avg(self) -> f64;
-    fn matrix_scale(self , scalar : i32);
+pub trait Matrix {
+    fn matrix_min(&self) -> i32;
+    fn matrix_max(&self) -> i32;
+    fn matrix_median(&self) -> i32;
+    fn matrix_sum(&self) -> i32;
+    fn matrix_print(&self);
+    fn matrix_avg(&self) -> f64;
+    fn matrix_scale(&mut self , scalar : i32);
+    fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>);
+    fn matrix_reduce(&self);
 }
 
+
+impl Matrix for Vec<Vec<i32>> {
+    fn matrix_min(&self) -> i32 {
+        let mut min : i32 = self[0][0];
+        for row in self {
+            for &val in row {
+                if val < min {
+                    min = val;
+                }
+            }
+        }
+        min
+    }
+
+    fn matrix_max(&self) -> i32 {
+        let mut max : i32 = self[0][0];
+        for row in self {
+            for &val in row {
+                if val > max {
+                    max = val;
+                }
+            }
+        }
+        max
+    }
+
+    fn matrix_median(&self) -> i32 {
+        //flatten 
+        let mut lst : Vec<i32> = vec![];
+        for row in self {
+            for &val in row {
+                lst.push(val);
+            }
+        }
+
+        //sort
+        lst.sort();
+
+        //get median
+        return lst[lst.len()/2];
+    }
+
+    fn matrix_sum(&self) -> i32 {
+        let mut sum : i32 = self[0][0];
+        for row in self {
+            for &val in row {
+                sum += val;
+            }
+        }
+        sum
+    }
+
+    fn matrix_print(&self) {
+        todo!()
+    }
+
+    fn matrix_avg(&self) -> f64 {
+        todo!()
+    }
+
+    fn matrix_scale(&mut self , scalar : i32) {
+        todo!()
+    }
+
+    fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>) {
+        todo!()
+    }
+    
+    fn matrix_reduce(&self) {
+        todo!()
+    }
+
+    
+}
+
+
+/* 
 impl Matrix for &[&[i32]] {
     /// Returns the min value of the matrix
     fn matrix_min(self) -> i32 {
@@ -95,7 +174,16 @@ impl Matrix for &[&[i32]] {
     }
 
     ///returns a new scaled matrix
-    fn matrix_scale(self , scalar : i32) {
+    fn matrix_scale(self , _scalar : i32) {
+        panic!("Matrix immutable ")
+    }
+
+    ///multiple two matrix's against each other...
+    fn matrix_multiply(self, matrix2 : &[&[i32]]) {
+        let fst_num_cols = self.len(); 
+        let fst_num_rows = self[0].len();
+        let snd_num_cols = matrix2.len();
+        let snd_num_rows = matrix2[0].len();
 
     }
 }
@@ -123,4 +211,78 @@ impl Matrix for &mut[&mut[i32]] {
             println!("|");
         }
     }
-}
+
+    fn matrix_min(self) -> i32 {
+        let mut curr_min = self[0][0];
+        for row in self {
+            for val in &mut **row {
+                if *val < curr_min {
+                    curr_min = *val
+                }
+            }
+        }
+        return curr_min;
+    }
+
+    /// Returns the max value of the matrix
+    fn matrix_max(self) -> i32 {
+        let mut curr_max = self[0][0];
+        for row in self {
+            for val in &mut **row {
+                if *val > curr_max {
+                    curr_max = *val
+                }
+            }
+        }
+        return curr_max;
+    }
+
+    ///returns the averge of the matrix
+    fn matrix_avg(self) -> f64 {
+        let mut sum = 0;
+        let mut size = 0;
+        for row in self {
+            for val in &mut **row {
+                sum += *val;
+                size += 1;
+            }
+        }
+        return sum as f64 / size as f64;
+    }
+
+    ///returns the sum of the matrix
+    fn matrix_sum(self) -> i32{
+        let mut sum : i32 = 0;
+        for row in self {
+            for val in &mut **row {
+                sum += *val;
+            }
+        }
+        return sum;
+    }
+
+    //fn matrix_median(matrix)
+    fn matrix_median(self) -> i32 {
+        //flatten the matrix
+        let mut flat : Vec<i32> = Vec::new();
+        for row in self {
+            for val in &mut **row {
+                flat.push(*val);
+            }
+        }
+
+        //sort the flattened matrix
+        flat.sort();
+
+        //return the median
+        let result = flat.get(flat.len() / 2);
+        match result {
+            Some(result) => return *result,
+            None => panic!("Unexpected error"),
+        }
+    }
+    
+    fn matrix_multiply(self, matrix2: &[&[i32]]) -> &[&[i32]] {
+        todo!()
+    }
+    */

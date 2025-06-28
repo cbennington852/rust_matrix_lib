@@ -12,9 +12,10 @@ mod tests {
         let row3 = [7, 8, 9];
 
         let matrix: &[&[i32]] = &[&row1, &row2, &row3];
-        assert_eq!(1 , matrix_min(matrix));
+        assert_eq!(1 , matrix.matrix_min());
     }
 
+    
     #[test]
     fn max_test() {
         let row1 = [1, 2, 3];
@@ -22,7 +23,7 @@ mod tests {
         let row3 = [7, 8, 9];
 
         let matrix: &[&[i32]] = &[&row1, &row2, &row3];
-        assert_eq!(9 , matrix_max(matrix));
+        assert_eq!(9 , matrix.matrix_max());
     }
 
     #[test]
@@ -32,7 +33,7 @@ mod tests {
         let row3 = [7, 8, 9];
 
         let matrix: &[&[i32]] = &[&row1, &row2, &row3];
-        assert_eq!(5.444444444444445 , matrix_avg(matrix));
+        assert_eq!(5.444444444444445 , matrix.matrix_avg());
     }
 
     #[test]
@@ -42,7 +43,7 @@ mod tests {
         let row3 = [7, 8, 9];
 
         let matrix: &[&[i32]] = &[&row1, &row2, &row3];
-        assert_eq!(49 , matrix_sum(matrix));
+        assert_eq!(49 , matrix.matrix_sum());
     }
 
     #[test]
@@ -52,8 +53,8 @@ mod tests {
         let row3 = [7, 8, 9];
 
         let matrix: &[&[i32]] = &[&row1, &row2, &row3];
-        assert_eq!(5 , matrix_median(matrix));
-        matrix_print(matrix);
+        assert_eq!(5 , matrix.matrix_median());
+        matrix.matrix_print();
     }
 
     #[test]
