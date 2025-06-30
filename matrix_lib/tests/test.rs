@@ -166,7 +166,38 @@ mod tests {
         matrix.matrix_scale(2);
         assert_eq!(true , matrix.matrix_equal(matrix2));
     }
+
+    #[test]
+    fn test_scale2() {
+        let mut matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![-2, -4, -4],
+            vec![-2, -4, -4],
+            vec![-2, -4, -4],
+        ];
+        matrix.matrix_scale(-2);
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
     
+    #[test]
+    fn test_scale2() {
+        let mut matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![-2, -4, -4],
+            vec![-2, -4, -4],
+            vec![-2, -4, -4],
+        ];
+        matrix.matrix_scale(-2);
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
 
     /* 
 

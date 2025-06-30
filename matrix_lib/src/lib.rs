@@ -1,3 +1,5 @@
+use noise::{NoiseFn, Perlin, Seedable};
+
 //////////////////////////////////////////////////////////////////////
 // For the non-mutable matrix's 
 //////////////////////////////////////////////////////////////////////
@@ -12,6 +14,8 @@ pub trait Matrix {
     fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>);
     fn matrix_reduce(&self);
     fn matrix_equal(&self, matrix2: Vec<Vec<i32>>) -> bool;
+    fn matrix_noise(seed: i32) -> Vec<Vec<i32>>;
+    fn matrix_init(cols : i32 , rows: i32, starting_val : i32) -> Vec<Vec<i32>>;
 }
 
 
@@ -110,6 +114,7 @@ impl Matrix for Vec<Vec<i32>> {
         return true
     }
 
+    ///Multiplies each and every element in a matrix by a scalar. 
     fn matrix_scale(&mut self , scalar : i32) {
         for row in self {
             for mut val in row {
@@ -118,12 +123,30 @@ impl Matrix for Vec<Vec<i32>> {
         }
     }
 
+    ///
     fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>) {
         todo!()
     }
     
     fn matrix_reduce(&self) {
         todo!()
+    }
+    
+    fn matrix_noise(seed: i32) -> Vec<Vec<i32>> {
+        todo!()
+    }
+    
+    ///makes a new matrix with specified cols and rows 
+    fn matrix_init(cols : i32 , rows: i32, starting_val : i32) -> Vec<Vec<i32>> {
+        if cols <= 0 || rows <= 0 {
+            panic!("{cols} and {rows} is not a valid matrix size");
+        }
+        let mut matrix : Vec<Vec<i32>> = vec![];
+        for x in 1..cols {
+            let mut row : Vec<i32> = vec![starting_val; rows.try_into().unwrap()];
+            matrix.push(row);
+        }
+        return matrix
     }
 
     
