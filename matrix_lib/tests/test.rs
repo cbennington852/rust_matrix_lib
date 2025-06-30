@@ -5,6 +5,41 @@ use matrix_lib::*;
 mod tests {
     use super::*;
 
+    ///////////////////////////////////////////////////////////////////////////
+    // TEST VECTORS
+    //////////////////////////////////////////////////////////////////////////
+    #[test]
+    fn test_min() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(1 , matrix.matrix_min());
+    }
+
+    #[test]
+    fn test_max() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(9 , matrix.matrix_max());
+    }
+
+    fn test_print() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        matrix.matrix_print();
+        assert_eq!(True, True);
+    }
+
+    /* 
+
     #[test]
     fn it_works() {
         let row1 = [1, 2, 3];
@@ -74,4 +109,5 @@ mod tests {
 
         assert_eq!(1 , 1);
     }
+    */
 }

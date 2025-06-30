@@ -66,6 +66,13 @@ impl Matrix for Vec<Vec<i32>> {
     }
 
     fn matrix_print(&self) {
+        for row in self {
+            println!("|");
+            for &val in row {
+                print!(" {} " , val);
+            }
+            println!("|");
+        }
         todo!()
     }
 
