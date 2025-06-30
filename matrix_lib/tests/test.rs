@@ -28,6 +28,7 @@ mod tests {
         assert_eq!(9 , matrix.matrix_max());
     }
 
+    #[test]
     fn test_print() {
         let matrix: Vec<Vec<i32>> = vec![
             vec![1, 2, 3],
@@ -35,8 +36,137 @@ mod tests {
             vec![7, 8, 9],
         ];
         matrix.matrix_print();
-        assert_eq!(True, True);
+        assert_eq!(true, true);
     }
+
+    #[test]
+    fn test_sum() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(5.0 , matrix.matrix_avg());
+    }
+
+    #[test]
+    fn test_equal() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
+
+    #[test]
+    fn test_equal2() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 4, 6],
+            vec![7, 8, 9],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(false , matrix.matrix_equal(matrix2));
+    }
+
+    #[test]
+    fn test_equal3() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 4, 6],
+            vec![7, 8, 9],
+            vec![5, 5, 6],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(false , matrix.matrix_equal(matrix2));
+    }
+    #[test]
+    fn test_equal4() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 4, 6 , 7 , 8],
+            vec![5, 5, 6],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(false , matrix.matrix_equal(matrix2));
+    }
+
+   
+
+    #[test]
+    fn test_equal5() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1]
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1]
+        ];
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
+
+    #[test]
+    fn test_equal6() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![]
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![]
+        ];
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
+
+     #[test]
+    fn test_equal7() {
+        let matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 4, 6],
+            vec![5, 5, 6],
+            vec![7, 8, 9],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![1, 2, 3],
+            vec![4, 4, 6],
+            vec![5, 5, 6],
+            vec![7, 8, 9],
+        ];
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
+
+    
+    #[test]
+    fn test_scale() {
+        let mut matrix: Vec<Vec<i32>> = vec![
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+            vec![1, 2, 2],
+        ];
+         let matrix2: Vec<Vec<i32>> = vec![
+            vec![2, 4, 4],
+            vec![2, 4, 4],
+            vec![2, 4, 4],
+        ];
+        matrix.matrix_scale(2);
+        assert_eq!(true , matrix.matrix_equal(matrix2));
+    }
+    
 
     /* 
 

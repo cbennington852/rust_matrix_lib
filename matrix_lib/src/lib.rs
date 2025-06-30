@@ -11,6 +11,7 @@ pub trait Matrix {
     fn matrix_scale(&mut self , scalar : i32);
     fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>);
     fn matrix_reduce(&self);
+    fn matrix_equal(&self, matrix2: Vec<Vec<i32>>) -> bool;
 }
 
 
@@ -67,21 +68,54 @@ impl Matrix for Vec<Vec<i32>> {
 
     fn matrix_print(&self) {
         for row in self {
-            println!("|");
+            print!("|");
             for &val in row {
                 print!(" {} " , val);
             }
             println!("|");
         }
-        todo!()
     }
 
     fn matrix_avg(&self) -> f64 {
-        todo!()
+        let mut sum = 0;
+        let mut count = 0;
+        for row in self {
+            for &val in row {
+                count += 1;
+                sum += val;
+            }
+        }
+        return (sum / count).into();
+    }
+
+    /// Checks tp make sure that two matrix's are equal to each other. 
+    fn matrix_equal(&self, matrix2: Vec<Vec<i32>>) -> bool {
+        if self.len() != matrix2.len() {
+            //println!("ISSUE: not rows {} != {}", self.len(), matrix2.len());
+            return false;
+        }
+        for x in 0..self.len() {
+            if self.get(x).unwrap().len() != matrix2.get(x).unwrap().len() {
+                //println!("ISSUE: not rows {} != {}", self.len(), matrix2.get(x).unwrap().len());
+                return false
+            }
+            for y in 0..self.get(x).unwrap().len() {
+                //println!("{x} , {y}");
+                if self.get(x).unwrap().get(y) != matrix2.get(x).unwrap().get(y) {
+                    //println!("ISSUE: not equal ");
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     fn matrix_scale(&mut self , scalar : i32) {
-        todo!()
+        for row in self {
+            for mut val in row {
+                *val = *val * scalar;
+            }
+        }
     }
 
     fn matrix_multiply(&self, matrix2: Vec<Vec<i32>>) {
